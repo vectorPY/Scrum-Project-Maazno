@@ -1,4 +1,2 @@
 # Scrum-Project-Maazno
 
-
-änderung
