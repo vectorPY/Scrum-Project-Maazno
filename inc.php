@@ -10,6 +10,9 @@ ini_set( 'display_errors', 1 );
 $host = "localhost";
 $user = "root";
 $passwd = "";
-$datenbank = "Maazno"
+$datenbank = "Maazno";
+
+// erlaubte Datentypen für Bilder
+$allowed = array("png", "jpg", "jpeg");
 
 ?>
