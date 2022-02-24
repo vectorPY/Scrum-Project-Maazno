@@ -19,7 +19,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-4 col-md-offset-5 align-self-center">
-            <form action="create_article.php" method="post">
+            <form action="create_article.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Name des Artikels</label>
                     <input class="form-control" type="text" name="name" id="name">
@@ -31,7 +31,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="Pircture">Bild</label>
+                    <label for="picture">Bild</label>
                     <input class="form-control" type="file" name="picture" id="picture">
                 </div>
                 <br>
