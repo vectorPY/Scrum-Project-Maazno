@@ -8,5 +8,5 @@
 </div>
 
 <?php
-    include_once("static/footer.php");
+    include_once("static/footer.php"); 
 ?>
