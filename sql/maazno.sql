@@ -31,7 +31,7 @@ CREATE TABLE `artikel` (
   `artikel_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `preis` int(11) NOT NULL,
-  `bild` blob NOT NULL,
+  `bild` longblob NOT NULL,
   `beschreibung` varchar(1000) NOT NULL,
   `kategorie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -94,6 +94,7 @@ CREATE TABLE `nutzer` (
   `nutzer_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `vorname` varchar(32) NOT NULL,
+  `username` varchar(32) NOT NULL UNIQUE,
   `telefon` varchar(32) NOT NULL,
   `straße` varchar(32) NOT NULL,
   `hausnummer` int(11) NOT NULL,
