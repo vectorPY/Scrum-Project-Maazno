@@ -2,7 +2,7 @@
 
 session_start();
 
-include("inc.php");
+include("../inc.php");
 
 $username = $_POST['username'];
 $passwort = $_POST['passwort'];
@@ -37,13 +37,13 @@ if(!empty($username) && !empty($passwort) && !empty($hash_passwort) && !is_numer
 						$_SESSION['nutzer_id'] = $username['nutzer_id'];
 
 				
-						header("Location: index.php");
+						header("Location: ../index.php");
 						die;
 					}
 				}
 			}
 			
-			echo "Falscher username oder passwort!";
+	    echo "Falscher username oder passwort!";
 		}else
 		{
 			echo "Falscher username oder passwort!";

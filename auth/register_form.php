@@ -44,16 +44,16 @@
       Vorname: <input type="text" name="vorname" size="10">
       <br>
       <br>
-      Nachname: <input type="text" name="nachname" size="10">
+      Name: <input type="text" name="name" size="10">
       <br>
       <br>
       Telefonnummer: <input type="text" name="telefon" size="10">
       <br>
       <br>
-      Ort: <input type="text" name="ort" size="10">
+      Ort: <input type="text" name="ort_id" size="10">
       <br>
       <br>
-      Strasse: <input type="text" name="strasse" size="10">
+      Straße: <input type="text" name="straße" size="10">
       <br>
       <br>
       Hausnummer: <input type="text" name="hausnummer" size="10">

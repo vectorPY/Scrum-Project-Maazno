@@ -8,15 +8,15 @@
 
 session_start();
 
-include("inc.php");
+include("../inc.php");
 print_r($_POST);
 
 $username = $_POST['username'];
 $vorname = $_POST['vorname'];
-$nachname = $_POST['nachname'];
+$name = $_POST['name'];
 $telefon = $_POST['telefon'];
-$ort = $_POST['ort'];
-$strasse = $_POST['strasse'];
+$ort_id = $_POST['ort_id'];
+$straße = $_POST['straße'];
 $hausnummer = $_POST['hausnummer'];
 $email = $_POST['email'];
 $passwort = $_POST['passwort'];
@@ -27,7 +27,7 @@ $hash_passwort = hash("sha512", $passwort);
 $con = mysqli_connect($host,$user,$passwd,$datenbank) or die("Die Datenbank ist momentan nicht erreichbar!");
 
 
-$sql = "INSERT INTO nutzer (username, vorname, nachname, telefon, ort, strasse, hausnummer, email, passwort) VALUES ('$username', '$vorname', '$nachname', '$telefon', '$ort', '$strasse', $hausnummer, '$email', '$hash_passwort')";
+$sql = "INSERT INTO nutzer (username, vorname, name, telefon, ort_id, straße, hausnummer, email, passwort) VALUES ('$username', '$vorname', '$name', '$telefon', '$ort_id', '$straße', '$hausnummer', '$email', '$hash_passwort')";
   //echo $sql;
 
 $sql2 = "SELECT username FROM nutzer WHERE username='$username'";
@@ -35,7 +35,7 @@ $sql2 = "SELECT username FROM nutzer WHERE username='$username'";
 $user_vergeben = (mysqli_query($con, $sql2));
 $count = mysqli_num_rows($user_vergeben);
 
-# Rueckmeldungen zu den Eingaben bei der Regestrierung
+# Rueckmeldungen zu den Eingaben bei der Registrierung
 
 if($count !== 0)
   {
@@ -72,16 +72,16 @@ if($count !== 0)
    echo "<br>";
    }
 
-   if ($nachname != "")
+   if ($name != "")
    {
    echo "<br>";
-   echo "Sie haben einen nachnamen eingegeben!";
+   echo "Sie haben einen namen eingegeben!";
    echo "<br>";
    }
   else
    {
    echo "<br>";
-   echo "Bitte geben Sie einen nachnamen ein!";
+   echo "Bitte geben Sie einen namen ein!";
    echo "<br>";
    }
 
@@ -99,7 +99,7 @@ if($count !== 0)
    echo "<br>";
    }
 
-   if ($ort != "")
+   if ($ort_id != "")
    {
    echo "<br>";
    echo "<br>";
@@ -114,7 +114,7 @@ if($count !== 0)
    }
 
 
-   if ($strasse != "")
+   if ($straße != "")
    {
    echo "<br>";
    echo "Sie haben eine strasse eingegeben!";
