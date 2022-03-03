@@ -9,7 +9,8 @@
 session_start();
 
 include("../inc.php");
-print_r($_POST);
+
+// print_r($_POST);
 
 $username = $_POST['username'];
 $vorname = $_POST['vorname'];
@@ -24,159 +25,42 @@ $passwort_wiederholen = $_POST['passwort_wiederholen'];
 
 $hash_passwort = hash("sha512", $passwort);
 
-$con = mysqli_connect($host,$user,$passwd,$datenbank) or die("Die Datenbank ist momentan nicht erreichbar!");
+$con = mysqli_connect($host, $user, $passwd, $datenbank) or die("Die Datenbank ist momentan nicht erreichbar!");
 
+$sql = "INSERT INTO nutzer (username, vorname, name, telefon, ort_id, straße, hausnummer, email, passwort) 
+  VALUES ('$username', '$vorname', '$name', $telefon, $ort_id, '$straße', $hausnummer, '$email', '$hash_passwort')";
 
-$sql = "INSERT INTO nutzer (username, vorname, name, telefon, ort_id, straße, hausnummer, email, passwort) VALUES ('$username', '$vorname', '$name', '$telefon', '$ort_id', '$straße', '$hausnummer', '$email', '$hash_passwort')";
-  //echo $sql;
+$unique = "SELECT username FROM nutzer WHERE username='$username'";
 
-$sql2 = "SELECT username FROM nutzer WHERE username='$username'";
-
-$user_vergeben = (mysqli_query($con, $sql2));
+$user_vergeben = mysqli_query($con, $unique);
 $count = mysqli_num_rows($user_vergeben);
 
-# Rueckmeldungen zu den Eingaben bei der Registrierung
+// Rueckmeldungen zu den Eingaben bei der Registrierung
 
-if($count !== 0)
-  {
-    echo "<br>";
-    echo "<br>";
-    echo "Der Benutzername ist bereits vergeben!";
-    echo "<br>";
-  } 
+if (empty($username) || empty($vorname) || empty($name) || empty($telefon) 
+	|| empty($ort_id) || empty($straße) || empty($hausnummer) || empty($email) || empty($passwort) || empty($passwort))
+	echo "Achten Sie darauf alle Felder auszufüllen";
+else {
+	if ($count != 0) {
 
-  if ($username != "")
-   {
-   echo "<br>";
-   echo "<br>";
-   echo "Sie haben einen username eingegeben!";
-   echo "<br>";
-   }
-  else
-   {
-   echo "<br>";
-   echo "Bitte geben Sie einen username ein!";
-   echo "<br>";
-   }
+		echo "<br>";
+		echo "<br>";
+		echo "Der Benutzername ist bereits vergeben!";
+		echo "<br>";
 
-   if ($vorname != "")
-   {
-   echo "<br>";
-   echo "Sie haben einen vornamen eingegeben!";
-   echo "<br>";
-   }
-  else
-   {
-   echo "<br>";
-   echo "Bitte geben Sie einen vornamen ein!";
-   echo "<br>";
-   }
-
-   if ($name != "")
-   {
-   echo "<br>";
-   echo "Sie haben einen namen eingegeben!";
-   echo "<br>";
-   }
-  else
-   {
-   echo "<br>";
-   echo "Bitte geben Sie einen namen ein!";
-   echo "<br>";
-   }
-
-   if ($telefon != "")
-   {
-   echo "<br>";
-   echo "<br>";
-   echo "Sie haben eine Telefonnummer eingegeben!";
-   echo "<br>";
-   }
-  else
-   {
-   echo "<br>";
-   echo "Bitte geben Sie eine Telefonnummer ein!";
-   echo "<br>";
-   }
-
-   if ($ort_id != "")
-   {
-   echo "<br>";
-   echo "<br>";
-   echo "Sie haben einen ort eingegeben!";
-   echo "<br>";
-   }
-  else
-   {
-   echo "<br>";
-   echo "Bitte geben Sie einen ort ein!";
-   echo "<br>";
-   }
-
-
-   if ($straße != "")
-   {
-   echo "<br>";
-   echo "Sie haben eine strasse eingegeben!";
-   echo "<br>";
-   }
-  else
-   {
-   echo "<br>";
-   echo "Bitte geben Sie einen strasse ein!";
-   echo "<br>";
-   }
-
-  
-   if ($hausnummer != "")
-   {
-   echo "<br>";
-   echo "<br>";
-   echo "Sie haben eine Hausnummer eingegeben!";
-   echo "<br>";
-   }
-  else
-   {
-   echo "<br>";
-   echo "Bitte geben Sie eine Hausnummer ein!";
-   echo "<br>";
-   }
-
-   if ($email != "")
-   {
-   echo "<br>";
-   echo "Sie haben eine E-Mail eingegeben!";
-   echo "<br>";
-   }
-  else
-   {
-   echo "<br>";
-   echo "Bitte geben Sie eine E-Mail ein!";
-   echo "<br>";
-   }
-
-   if ($passwort != "")
-   {
-   echo "<br>";
-   echo "Sie haben ein passwort eingegeben!";
-   echo "<br>";
-   }
-  else
-   {
-   echo "<br>";
-   echo "Bitte geben Sie ein passwort ein!";
-   echo "<br>";
-   }
-
-
-    if ($passwort === $passwort_wiederholen)
-      (mysqli_query($con, $sql));
-
-      else
-      {
-        echo "Die Passwörter stimmen nicht überein! Wiederhohlen sie ihre eingabe!";
-      }
-
-
+	} else {
+		if ($passwort === $passwort_wiederholen) {
+			if (mysqli_query($con, $sql))
+				echo "Nutzer wurde ertsellt";
+			else {
+				echo "Beim Erstellen des Nutzers ist ein Fehler aufgetreten!";
+				echo mysqli_error($con);
+			}
+		}
+		else {
+			echo "Die Passwörter stimmen nicht überein! Wiederhohlen sie ihre eingabe!";
+		}
+	}
+}
 ?>
 
