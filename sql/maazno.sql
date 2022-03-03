@@ -98,7 +98,7 @@ CREATE TABLE `nutzer` (
   `telefon` varchar(32) NOT NULL,
   `straße` varchar(32) NOT NULL,
   `hausnummer` int(11) NOT NULL,
-  `passwort` varchar(32) NOT NULL,
+  `passwort` varchar(128) NOT NULL,
   `ort_id` int(11) NOT NULL,
   `email` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
