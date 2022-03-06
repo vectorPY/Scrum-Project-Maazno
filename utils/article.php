@@ -18,4 +18,16 @@ function valid_category_id($con, $c_id) {
     else
         return false;
 }
+
+/**
+ * gibt alle Attribute von artikel zurück
+ *
+ * @param  con: die Datenbankverbindung
+ * @return object mysqli_result mit allen Attributen der Antwort.
+ */
+function get_all_article($con){
+    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` ORDER BY artikel_id;";
+
+    return mysqli_query($con, $sql);
+}
 ?>

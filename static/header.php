@@ -29,7 +29,7 @@
 							<a class="nav-link active" aria-current="page" href="../index.php">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Platzhalter</a>
+							<a class="nav-link" href="article/article_view.php">Artikel&uuml;bersicht</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">Platzhalter</a>
@@ -39,13 +39,13 @@
 						</li>
 						<?php
 						// Fallunterscheidung für wenn der Nutzer eingeloggt ist und wenn nicht.
-						if (isset($_SESSION["name"])){
+						if (isset($_SESSION["username"])){ //Eingeloggt
 							echo'<li class="nav-item"><a class="nav-link" href="#">Profil</a></li>';
 							echo'<li class="nav-item"><a class="nav-link" href="#">Logout</a></li>';
 						}
-						else{
+						else{ //nicht Eingeloggt
 							echo'<li class="nav-item"><a class="nav-link" href="#">Register</a></li>';
-							echo'<li class="nav-item"><a class="nav-link" href="#">Login</a></li>';
+							echo'<li class="nav-item"><a class="nav-link" href="#">Login</a></li>'; 
 						}
 						?>
 					</ul>
