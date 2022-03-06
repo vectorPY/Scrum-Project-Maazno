@@ -78,4 +78,4 @@ INSERT INTO `ort` (`ort_id`, `ort`, `plz`, `land_id`) VALUES ('1', 'Berlin', '14
 --
 
 INSERT INTO `nutzer` (`nutzer_id`, `name`, `vorname`, `username`, `telefon`, `straße`, `hausnummer`, `passwort`, `ort_id`, `email`)
-VALUES ('1', 'Maazno', 'Team', 'Admin', '01525354329', 'Beskidenstraße', '1', '1234', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'support@maazno.de');
+VALUES ('1', 'Maazno', 'Team', 'Admin', '01525354329', 'Beskidenstraße', '1', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', '1', 'support@maazno.de');
