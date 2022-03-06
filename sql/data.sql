@@ -1,8 +1,4 @@
 
--- Administrator
-
-INSERT INTO `nutzer` (`nutzer_id`, `name`, `vorname`, `username`, `telefon`, `straße`, `hausnummer`, `passwort`, `ort_id`, `email`) VALUES ('1', 'Maazno', 'Team', 'Admin', '01525354329', 'Beskidenstraße', '1', '1234', '1', 'support@maazno.de');
-
 -- Land
 
 INSERT INTO `land` (`land_id`, `land`) VALUES ('1', 'Deutschland');
@@ -23,3 +19,9 @@ INSERT INTO `kategorie` (`kategorie_id`, `kategorie`) VALUES ('6', 'Drogerie');
 INSERT INTO `kategorie` (`kategorie_id`, `kategorie`) VALUES ('7', 'Computer');
 INSERT INTO `kategorie` (`kategorie_id`, `kategorie`) VALUES ('8', 'Games');
 INSERT INTO `kategorie` (`kategorie_id`, `kategorie`) VALUES ('9', 'Lebensmittel');
+
+
+-- Administrator
+
+INSERT INTO `nutzer` (`nutzer_id`, `name`, `vorname`, `username`, `telefon`, `straße`, `hausnummer`, `passwort`, `ort_id`, `email`)
+VALUES ('1', 'Maazno', 'Team', 'Admin', '01525354329', 'Beskidenstraße', '1', '1234', '1', 'support@maazno.de');
