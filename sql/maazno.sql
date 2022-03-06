@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 23. Feb 2022 um 20:17
+-- Erstellungszeit: 06. Mrz 2022 um 19:22
 -- Server-Version: 10.4.21-MariaDB
--- PHP-Version: 8.0.12
+-- PHP-Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `artikel` (
   `artikel_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `preis` int(11) NOT NULL,
-  `bild` longblob NOT NULL,
+  `preis` float NOT NULL,
+  `bild` blob NOT NULL,
   `beschreibung` varchar(1000) NOT NULL,
   `kategorie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -94,11 +94,10 @@ CREATE TABLE `nutzer` (
   `nutzer_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `vorname` varchar(32) NOT NULL,
-  `username` varchar(32) NOT NULL UNIQUE,
   `telefon` varchar(32) NOT NULL,
   `straße` varchar(32) NOT NULL,
   `hausnummer` int(11) NOT NULL,
-  `passwort` varchar(128) NOT NULL,
+  `passwort` varchar(32) NOT NULL,
   `ort_id` int(11) NOT NULL,
   `email` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
