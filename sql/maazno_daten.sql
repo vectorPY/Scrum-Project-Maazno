@@ -40,11 +40,42 @@ INSERT INTO `artikel` (`artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `k
 -- Daten für Tabelle `kategorie`
 --
 
+
 INSERT INTO `kategorie` (`kategorie_id`, `kategorie`) VALUES
 (1, 'Spiel'),
 (2, 'Küchenutensilien');
+('3', 'Buecher');
+('4', 'Beleuchtung');
+('5', 'Elektronik');
+('6', 'Drogerie');
+('7', 'Computer');
+('8', 'Games');
+('9', 'Lebensmittel');
+('10', 'Spielzeug');
+('11', 'Bekleidung');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+--
+-- Daten für Tabelle `land`
+--
+
+INSERT INTO `land` (`land_id`, `land`) VALUES ('1', 'Deutschland');
+
+--
+-- Daten für Tabelle `ort`
+--
+
+INSERT INTO `ort` (`ort_id`, `ort`, `plz`, `land_id`) VALUES ('1', 'Berlin', '14195', '1');
+
+--
+-- Daten für Tabelle `nutzer`
+-- Admin Test
+--
+
+INSERT INTO `nutzer` (`nutzer_id`, `name`, `vorname`, `username`, `telefon`, `straße`, `hausnummer`, `passwort`, `ort_id`, `email`)
+VALUES ('1', 'Maazno', 'Team', 'Admin', '01525354329', 'Beskidenstraße', '1', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', '1', 'support@maazno.de');
