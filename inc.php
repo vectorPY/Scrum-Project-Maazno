@@ -15,4 +15,6 @@ $datenbank = "Maazno";
 // erlaubte Datentypen für Bilder
 $allowed = array("png", "jpg", "jpeg");
 
+$con = mysqli_connect($host, $user, $passwd, $datenbank) or die("Failed to connect to the database");
+
 ?>
