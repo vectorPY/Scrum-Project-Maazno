@@ -16,13 +16,56 @@ if($result->num_rows == 0){
     $row=array_values($r);
 print_r ($row);
     echo "
-    <ul class='list-group'>
-        <li class='list-group-item'>$row[0]</li>
-        <li class='list-group-item'>$row[1]</li>
-        <li class='list-group-item'>$row[2]</li>
-        <li class='list-group-item'>$row[3]</li>
-        <li class='list-group-item'>And a fifth one</li>
-    </ul>
+    <table >
+    <thead>
+        <tr>
+            <th>Deine Profilübersicht</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Nachname:</td>
+            <td> $row[1]</td>
+        </tr>
+        <tr>
+            <td>Vorname:</td>
+            <td> $row[2]</td>
+        </tr>
+        <tr>
+            <td>Telefonnummer:</td>
+            <td> $row[3]</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td> $row[8]</td>
+        </tr>
+        <tr>
+            <td>Straße:</td>
+            <td> $row[4]</td>
+        </tr>
+        <tr>
+            <td>Hausnummer:</td>
+            <td> $row[5]</td>
+        </tr>
+        <tr>
+            <td>Passwort:</td>
+            <td> $row[6]</td>
+        </tr>
+
+        <tr>
+            <td>Ort:</td>
+            <td> $row[9]</td>
+        </tr>
+        <tr>
+            <td>PLZ:</td>
+            <td> $row[10]</td>
+        </tr>
+        <tr>
+            <td>Land:</td>
+            <td> $row[12]</td>
+        </tr>
+        </tbody>
+    </table>>
     ";
 } 
        
