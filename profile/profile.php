@@ -1,6 +1,7 @@
 <?php
 
-require_once('connection.php');
+include "../inc.php";
+$con = mysqli_connect($host,$user,$passwd,$datenbank) or die("Die Datenbank ist momentan nicht erreichbar!");
 
 session_start();
 
