@@ -94,6 +94,7 @@ CREATE TABLE `nutzer` (
   `nutzer_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `vorname` varchar(32) NOT NULL,
+  `username` varchar(32) NOT NULL UNIQUE,
   `telefon` varchar(32) NOT NULL,
   `straße` varchar(32) NOT NULL,
   `hausnummer` int(11) NOT NULL,

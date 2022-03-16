@@ -43,17 +43,16 @@ INSERT INTO `artikel` (`artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `k
 
 INSERT INTO `kategorie` (`kategorie_id`, `kategorie`) VALUES
 (1, 'Spiel'),
-(2, 'Küchenutensilien');
-('3', 'Buecher');
-('4', 'Beleuchtung');
-('5', 'Elektronik');
-('6', 'Drogerie');
-('7', 'Computer');
-('8', 'Games');
-('9', 'Lebensmittel');
-('10', 'Spielzeug');
+(2, 'Küchenutensilien'),
+('3', 'Buecher'),
+('4', 'Beleuchtung'),
+('5', 'Elektronik'),
+('6', 'Drogerie'),
+('7', 'Computer'),
+('8', 'Games'),
+('9', 'Lebensmittel'),
+('10', 'Spielzeug'),
 ('11', 'Bekleidung');
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
