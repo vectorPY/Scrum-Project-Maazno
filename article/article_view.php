@@ -10,12 +10,15 @@
         $article = get_all_article($con);
         $counter = 0;
         echo '<div class="row">';
+        // Schleife, zur hinzufuegung der Artikel in den view
         while($row_article = mysqli_fetch_assoc($article)){
+            // counter zaehlt, wie viele Elemente sich schon in der Reihe befinden und geht in die neue Reihe, wenn es vier Elemente in der Reihe gibt
             if ($counter % 4 == 0 and $counter != 0){
                 echo '</div>';
                 echo '<br>';
                 echo '<div class="row">';
             }
+            // HTML code zur hinzufuegung der Artikel als "cards"
             echo '<div class="col-sm-3" >';
             echo '<a href="article_detailed_view.php?article_id='. $row_article["artikel_id"] .'" class="text-decoration-none text-reset">';
             echo '<div class="card h-100">';
