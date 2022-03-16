@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 06. Mrz 2022 um 19:22
--- Server-Version: 10.4.21-MariaDB
--- PHP-Version: 8.0.10
+-- Erstellungszeit: 16. Mrz 2022 um 13:52
+-- Server-Version: 10.4.17-MariaDB
+-- PHP-Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,41 +40,41 @@ INSERT INTO `artikel` (`artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `k
 -- Daten für Tabelle `kategorie`
 --
 
-
 INSERT INTO `kategorie` (`kategorie_id`, `kategorie`) VALUES
 (1, 'Spiel'),
 (2, 'Küchenutensilien'),
-('3', 'Buecher'),
-('4', 'Beleuchtung'),
-('5', 'Elektronik'),
-('6', 'Drogerie'),
-('7', 'Computer'),
-('8', 'Games'),
-('9', 'Lebensmittel'),
-('10', 'Spielzeug'),
-('11', 'Bekleidung');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
+(3, 'Buecher'),
+(4, 'Beleuchtung'),
+(5, 'Elektronik'),
+(6, 'Drogerie'),
+(7, 'Computer'),
+(8, 'Games'),
+(9, 'Lebensmittel'),
+(10, 'Spielzeug'),
+(11, 'Bekleidung');
 
 --
 -- Daten für Tabelle `land`
 --
 
-INSERT INTO `land` (`land_id`, `land`) VALUES ('1', 'Deutschland');
+INSERT INTO `land` (`land_id`, `land`) VALUES
+(1, 'Deutschland');
+
+--
+-- Daten für Tabelle `nutzer`
+--
+
+INSERT INTO `nutzer` (`nutzer_id`, `name`, `vorname`, `username`, `telefon`, `straße`, `hausnummer`, `passwort`, `ort_id`, `email`) VALUES
+(1, 'Maazno', 'Team', 'Admin', '01525354329', 'Beskidenstraße', 1, 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 1, 'support@maazno.de');
 
 --
 -- Daten für Tabelle `ort`
 --
 
-INSERT INTO `ort` (`ort_id`, `ort`, `plz`, `land_id`) VALUES ('1', 'Berlin', '14195', '1');
+INSERT INTO `ort` (`ort_id`, `ort`, `plz`, `land_id`) VALUES
+(1, 'Berlin', '14195', 1);
+COMMIT;
 
---
--- Daten für Tabelle `nutzer`
--- Admin Test
---
-
-INSERT INTO `nutzer` (`nutzer_id`, `name`, `vorname`, `username`, `telefon`, `straße`, `hausnummer`, `passwort`, `ort_id`, `email`)
-VALUES ('1', 'Maazno', 'Team', 'Admin', '01525354329', 'Beskidenstraße', '1', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', '1', 'support@maazno.de');
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
