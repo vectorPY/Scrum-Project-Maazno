@@ -1,14 +1,25 @@
+<html>
+    <head>
+        <title>Logout</title>
+    </head>
+<body>
+
 <?php
 
-session_start();
+$_SESSION = array();
 
-if(isset($_SESSION['username']))
-{
-	unset($_SESSION['username']);
-
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
 }
 
-header("Location: login:form.php");
-die;
+session_destroy();
+header('location: ../index.php');
 
 ?>
+
+</body>
+</html>
