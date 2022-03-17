@@ -30,4 +30,11 @@ function get_all_article($con){
 
     return mysqli_query($con, $sql);
 }
+
+
+function get_one_article($con, $artikel_id){
+    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE artikel_id=$artikel_id;";
+
+    return mysqli_query($con, $sql);
+}
 ?>
