@@ -30,4 +30,16 @@ function get_all_article($con){
 
     return mysqli_query($con, $sql);
 }
+
+/**
+ * gibt alle Attribute von artikel nach Preis absteigend sortiert zurück
+ *
+ * @param  con: die Datenbankverbindung
+ * @return object mysqli_result mit allen Attributen nach Preis absteigend sortiert.
+ */
+function order_article_preis($con){
+    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` ORDER BY preis desc;";
+
+    return mysqli_query($con, $sql);
+}
 ?>

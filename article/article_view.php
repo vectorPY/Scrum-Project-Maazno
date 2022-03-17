@@ -2,13 +2,49 @@
     include_once("../static/header.php");
     include_once("../utils/article.php");
     include_once("../inc.php");
+
+?>
+
+
+    <body class="text-center">
+        <h1 class="h3 mb-3 fw-normal">Bitte wählen sie ein Atribut nach dem gefiltert werden soll aus!</h1>
+        <form method="post" action="">
+            
+            <input type="checkbox" name='lang[]' value="Preis"> Preis <br/>
+            <input type="checkbox" name='lang[]' value="JavaScript"> JavaScript <br/>
+            <input type="checkbox" name='lang[]' value="jQuery"> jQuery <br/>
+            <input type="checkbox" name='lang[]' value="Angular JS"> Angular JS <br/>
+            <br>
+            <input type="submit" value="Submit" name="submit">
+        </form>
+
+        <?php
+        $preis = order_article_preis($con);
+
+        if(isset($_POST['submit'])){
+
+            if(!empty($_POST['lang'])) {
+
+                foreach($_POST['lang'] as $value){
+                    echo "value : ".$value.'<br/>';
+                }
+
+            }
+
+        }
+        echo '<br>';
+        echo '<br>';
 ?>
 
 <div class="container">
 
     <?php 
+
         $article = get_all_article($con);
+        $preis = order_article_preis($con);
         $counter = 0;
+
+
         echo '<div class="row">';
         // Schleife, zur hinzufuegung der Artikel in den view
         while($row_article = mysqli_fetch_assoc($article)){
@@ -30,9 +66,18 @@
             $counter++;
         }
         echo '</div>';
+
     ?>
 
 
 <?php
     include_once("../static/footer.php");
 ?>
+
+
+
+
+
+
+
+
