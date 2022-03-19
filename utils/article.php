@@ -32,7 +32,7 @@ function get_all_article($con){
 }
 
 /** 
- * Sucht nach bestimmten Artikel
+ * Sucht nach bestimmten Artikel (anhand des Namens)
  * 
  * @param con: die Datenbankverbindung
  * @param search: Der String nach dem gesucht wird
