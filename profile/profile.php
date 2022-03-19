@@ -39,6 +39,8 @@ if ($result->num_rows == 0) {
     $r = $result->fetch_assoc();
     $row = array_values($r);
     
+    // print_r($row);
+
     // Tabelle ausgeben
     echo "
         <div class='row justify-content-center'>
@@ -60,28 +62,32 @@ if ($result->num_rows == 0) {
                         <td> $row[2]</td>
                     </tr>
                     <tr>
-                        <td>Telefonnummer:</td>
+                        <td>Username:</td>
                         <td> $row[3]</td>
                     </tr>
                     <tr>
-                        <td>Email:</td>
-                        <td> $row[8]</td>
-                    </tr>
-                    <tr>
-                        <td>Straße:</td>
+                        <td>Telefonnummer:</td>
                         <td> $row[4]</td>
                     </tr>
                     <tr>
-                        <td>Hausnummer:</td>
-                        <td> $row[5]</td>
-                    </tr>
-                    <tr>
-                        <td>Ort:</td>
+                        <td>Email:</td>
                         <td> $row[9]</td>
                     </tr>
                     <tr>
-                        <td>PLZ:</td>
+                        <td>Straße:</td>
+                        <td> $row[5]</td>
+                    </tr>
+                    <tr>
+                        <td>Hausnummer:</td>
+                        <td> $row[6]</td>
+                    </tr>
+                    <tr>
+                        <td>Ort:</td>
                         <td> $row[10]</td>
+                    </tr>
+                    <tr>
+                        <td>PLZ:</td>
+                        <td> $row[11]</td>
                     </tr>
                     <tr>
                         <td>Land:</td>
