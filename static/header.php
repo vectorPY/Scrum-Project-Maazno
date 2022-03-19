@@ -51,8 +51,8 @@
 					</ul>
 				</div>
 				<div class="container-fluid">
-					<form class="d-flex justify-content-end">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					<form class="d-flex justify-content-end" action="http://localhost/Scrum-Project-Maazno/search/search.php" method="post">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
 							<button class="btn btn-outline-light" type="submit">Search</button>
 					</form>
 				</div>

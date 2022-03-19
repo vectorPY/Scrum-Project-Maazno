@@ -30,4 +30,18 @@ function get_all_article($con){
 
     return mysqli_query($con, $sql);
 }
+
+/** 
+ * Sucht nach bestimmten Artikel (anhand des Namens)
+ * 
+ * @param con: die Datenbankverbindung
+ * @param search: Der String nach dem gesucht wird
+ * 
+ * @return object mysqli_result mit den passenden Artikeln
+*/ 
+function search_article($con, $search) {
+    $sql = "SELECT * FROM artikel WHERE artikel.name LIKE '%$search%'";
+
+    return mysqli_query($con, $sql);
+}
 ?>
