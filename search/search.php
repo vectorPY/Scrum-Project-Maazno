@@ -29,7 +29,7 @@ $res = search_article($con, $search);
             echo '<div class="row">';
         }
 
-        // HTML code zum Hinzufueguen der Artikel als "cards
+        // HTML code zum Hinzufueguen der Artikel als "cards"
         echo '<div class="col-sm-3" >';
         echo '<a href="../article/article_detailed_view.php?article_id='. $row_article["artikel_id"] .'" class="text-decoration-none text-reset">';
         echo '<div class="card h-100">';
