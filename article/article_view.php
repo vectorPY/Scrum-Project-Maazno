@@ -6,46 +6,66 @@
 ?>
 
 
-    <body class="text-center">
-        <h1 class="h3 mb-3 fw-normal">Bitte wählen sie ein Atribut nach dem gefiltert werden soll aus!</h1>
-        <form method="post" action="">
-            
-            <input type="checkbox" name='lang[]' value="Preis"> Preis <br/>
-            <input type="checkbox" name='lang[]' value="JavaScript"> Name <br/>
-            <input type="checkbox" name='lang[]' value="jQuery"> Kategorie <br/>
-            <br>
-            <input type="submit" value="Submit" name="submit">
-        </form>
+<body class="text-center">
+<br>
+    <h1 class="h3 mb-3 fw-normal">Kategorieauswahl (optional) </h1>  
+    <form method="post">
+    
+    <div class="form-check form-check-inline">
+    <input type="checkbox" name='alle' value="Alle"> Alle <br/>
+    </div>
 
-<?php
-        $preis = order_article_preis($con);
+    <div class="form-check form-check-inline">
+    <input type="checkbox" name='küchenutensilien' value="Küchenutensilien"> Küchenutensilien <br/>
+    </div>
 
-        if(isset($_POST['submit'])){
+    <div class="form-check form-check-inline">
+    <input type="checkbox" name='spiel' value="Spiel"> Spiel <br/>
+    </div>
+    <br>
+    <br>
+    <h1 class="h3 mb-3 fw-normal">Bitte wählen sie  eine Option aus! </h1>
+    <form method="post">
+        
+        <input type="checkbox" name='preis' value="Preis"> Preis absteigend <br/>
+        <input type="checkbox" name='preis2' value="Preis"> Preis aufsteigend <br/>
+        <input type="checkbox" name='name' value="Name"> Name aufsteigend <br/>
+        <input type="checkbox" name='name2' value="Name"> Name absteigend <br/>
+        <br>
+        <br>
+        <input type="submit" value="Submit" name="submit">
+        <br>
+        <br>
+    </form>
+        
 
-            if(!empty($_POST['lang'])) {
-
-                foreach($_POST['lang'] as $value){
-                    echo "value : ".$value.'<br/>';
-                }
-
-            }
-
-        }
-                                                                                                                                       
-?>
 
 <div class="container">
 
     <?php 
+        echo '<div class="row">';
 
         $article = get_all_article($con);
-        $preis = order_article_preis($con);
         $counter = 0;
+        
+        if (isset($_POST['preis'])) {
+            $value = order_article_preis($con);
+        } else if (isset($_POST['preis2'])) {
+            $value = order_article_preis_asc($con);
+        } else if (isset($_POST['name'])) {
+            $value = order_article_name($con);
+        } else if (isset($_POST['name2'])) {
+            $value = order_article_name_desc($con);
+        } else if (isset($_POST['alle'])) {
+            $value = get_all_article($con);
+        } else if (isset($_POST['küchenutensilien'])) {
+            $value = get_all_article_kuechenutensilien($con);
+        } else if (isset($_POST['spiel'])) {
+            $value = get_all_article_spiel($con);
+        } 
 
-
-        echo '<div class="row">';
         // Schleife, zur hinzufuegung der Artikel in den view
-        while($row_article = mysqli_fetch_assoc($article)){
+        while($row_article = mysqli_fetch_assoc($value)){
             // counter zaehlt, wie viele Elemente sich schon in der Reihe befinden und geht in die neue Reihe, wenn es vier Elemente in der Reihe gibt
             if ($counter % 4 == 0 and $counter != 0){
                 echo '</div>';
