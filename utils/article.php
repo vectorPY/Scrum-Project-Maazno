@@ -31,14 +31,22 @@ function get_all_article($con){
     return mysqli_query($con, $sql);
 }
 
-/**
- * gibt alle Attribute von artikel nach Preis absteigend sortiert zurück
- *
- * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen nach Preis absteigend sortiert.
- */
-function order_article_preis($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` ORDER BY preis desc;";
+
+function get_one_article($con, $artikel_id){
+    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE artikel_id=$artikel_id;";
+
+    return mysqli_query($con, $sql);
+}
+/** 
+ * Sucht nach bestimmten Artikel (anhand des Namens)
+ * 
+ * @param con: die Datenbankverbindung
+ * @param search: Der String nach dem gesucht wird
+ * 
+ * @return object mysqli_result mit den passenden Artikeln
+*/ 
+function search_article($con, $search) {
+    $sql = "SELECT * FROM artikel WHERE artikel.name LIKE '%$search%'";
 
     return mysqli_query($con, $sql);
 }
