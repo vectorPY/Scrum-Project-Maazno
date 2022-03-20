@@ -16,7 +16,7 @@
 		<!--Navbar-->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="index.php">
+				<a class="navbar-brand" href="/Scrum-Project-Maazno/index.php">
 					<img src="" alt="Logo" width="80" height="24" class="d-inline-block align-text-top">
 					Maazno
 				</a>
@@ -26,26 +26,26 @@
 				<div class="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="../index.php">Home</a>
+							<a class="nav-link active" aria-current="page" href="/Scrum-Project-Maazno/index.php">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="article/article_view.php">Artikel&uuml;bersicht</a>
+							<a class="nav-link" href="/Scrum-Project-Maazno/article/article_view.php">Artikel&uuml;bersicht</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Platzhalter</a>
+							<a class="nav-link" href="/Scrum-Project-Maazno/cart/cart.php">Warenkorb</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Platzhalter</a>
+							<a class="nav-link" href="#">K&auml;ufe</a>
 						</li>
 						<?php
 						// Fallunterscheidung für wenn der Nutzer eingeloggt ist und wenn nicht.
 						if (isset($_SESSION["username"])){ //Eingeloggt
-							echo'<li class="nav-item"><a class="nav-link" href="#">Profil</a></li>';
-							echo'<li class="nav-item"><a class="nav-link" href="#">Logout</a></li>';
+							echo'<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/profile/profile.php">Profil</a></li>';
+							echo'<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/auth/logout.php">Logout</a></li>';
 						}
 						else{ //nicht Eingeloggt
-							echo'<li class="nav-item"><a class="nav-link" href="#">Register</a></li>';
-							echo'<li class="nav-item"><a class="nav-link" href="#">Login</a></li>'; 
+							echo'<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/auth/register_form.php">Register</a></li>';
+							echo'<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/auth/login_form.php">Login</a></li>'; 
 						}
 						?>
 					</ul>
