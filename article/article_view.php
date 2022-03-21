@@ -45,7 +45,7 @@
     <?php 
         echo '<div class="row">';
 
-        $article = get_all_article($con);
+        $value = get_all_article($con);
         $counter = 0;
         
         if (isset($_POST['preis'])) {
