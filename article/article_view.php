@@ -8,7 +8,7 @@
 
 <body class="text-center">
 <br>
-    <h1 class="h3 mb-3 fw-normal">Kategorieauswahl (optional) </h1>  
+    <h1 class="h3 mb-3 fw-normal">Kategorieauswahl</h1>  
     <form method="post">
     
     <div class="form-check form-check-inline">
@@ -22,21 +22,30 @@
     <div class="form-check form-check-inline">
     <input type="checkbox" name='spiel' value="Spiel"> Spiel <br/>
     </div>
-    <br>
-    <br>
+
+    <div class="form-check form-check-inline">
+    <input type="checkbox" name='buecher' value="Buecher"> Buecher <br/>
+    </div>
+
+    <div class="form-check form-check-inline">
+    <input type="checkbox" name='beleuchtung' value="Beleuchtung"> Beleuchtung <br/>
+    </div>
+<br>
+<br>
+
+
     <h1 class="h3 mb-3 fw-normal">Bitte wählen sie  eine Option aus! </h1>
-    <form method="post">
-        
-        <input type="checkbox" name='preis' value="Preis"> Preis absteigend <br/>
-        <input type="checkbox" name='preis2' value="Preis"> Preis aufsteigend <br/>
-        <input type="checkbox" name='name' value="Name"> Name aufsteigend <br/>
-        <input type="checkbox" name='name2' value="Name"> Name absteigend <br/>
-        <br>
-        <br>
-        <input type="submit" value="Submit" name="submit">
-        <br>
-        <br>
-    </form>
+        <form method="post">
+            <input type="checkbox" name='preis' value="Preis"> Preis absteigend <br/>
+            <input type="checkbox" name='preis2' value="Preis"> Preis aufsteigend <br/>
+            <input type="checkbox" name='name' value="Name"> Name aufsteigend <br/>
+            <input type="checkbox" name='name2' value="Name"> Name absteigend <br/>
+                <br>
+                <br>
+            <input type="submit" value="Submit" name="submit">
+                <br>
+                <br>
+        </form>
         
 
 
