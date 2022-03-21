@@ -10,7 +10,7 @@
         <div class="col-5">
             <?php
                 $article = mysqli_fetch_assoc(get_one_article($con, $_GET["article_id"])); //Alle Informationen des Artikels auf article speichern
-                echo '<div class="sticky-top" style="top: 56px"><img src="data:image/jpg/png/;charset=utf8;base64,'. base64_encode($article["bild"]) .'" class="card-img-top" alt="'. $article["name"] .'"></div>'; //Bild anzeigen
+                echo '<div class="sticky-top" style="top: 73px"><img src="data:image/jpg/png/;charset=utf8;base64,'. base64_encode($article["bild"]) .'" class="card-img-top" alt="'. $article["name"] .'"></div>'; //Bild anzeigen
             ?>
         </div>
         <div class="col-4"> <!-- Name, Preis, Beschreibung anzeige -->
