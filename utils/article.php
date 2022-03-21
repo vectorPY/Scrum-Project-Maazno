@@ -94,6 +94,30 @@ function get_all_article_spiel($con){
 }
 
 /**
+ * gibt alle Attribute von artikel zurück, welche die Kategorie Buch haben
+ *
+ * @param  con: die Datenbankverbindung
+ * @return object mysqli_result mit allen Attributen der Antwort.
+ */
+function get_all_article_buch($con){
+    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE `kategorie_id` = 3 ORDER BY artikel_id;";
+
+    return mysqli_query($con, $sql);
+}
+
+/**
+ * gibt alle Attribute von artikel zurück, welche die Kategorie Drogerie haben
+ *
+ * @param  con: die Datenbankverbindung
+ * @return object mysqli_result mit allen Attributen der Antwort.
+ */
+function get_all_article_drogerie($con){
+    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE `kategorie_id` = 6 ORDER BY artikel_id;";
+
+    return mysqli_query($con, $sql);
+}
+
+/**
  * gibt alle Attribute von artikel nach Preis absteigend sortiert zurück
  *
  * @param  con: die Datenbankverbindung

@@ -22,6 +22,14 @@
     <div class="form-check form-check-inline">
     <input type="checkbox" name='spiel' value="Spiel"> Spiel <br/>
     </div>
+
+    <div class="form-check form-check-inline">
+    <input type="checkbox" name='buch' value="Buch"> Buch <br/>
+    </div>
+
+    <div class="form-check form-check-inline">
+    <input type="checkbox" name='drogerie' value="Drogerie"> Drogerie <br/>
+    </div>
 <br>
 <br>
 
@@ -63,6 +71,10 @@
             $value = get_all_article_kuechenutensilien($con);
         } else if (isset($_POST['spiel'])) {
             $value = get_all_article_spiel($con);
+        } else if (isset($_POST['buch'])) {
+            $value = get_all_article_buch($con);
+        } else if (isset($_POST['drogerie'])) {
+            $value = get_all_article_drogerie($con);
         } 
 
         // Schleife, zur hinzufuegung der Artikel in den view
