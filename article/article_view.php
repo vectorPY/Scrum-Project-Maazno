@@ -22,14 +22,6 @@
     <div class="form-check form-check-inline">
     <input type="checkbox" name='spiel' value="Spiel"> Spiel <br/>
     </div>
-
-    <div class="form-check form-check-inline">
-    <input type="checkbox" name='buecher' value="Buecher"> Buecher <br/>
-    </div>
-
-    <div class="form-check form-check-inline">
-    <input type="checkbox" name='beleuchtung' value="Beleuchtung"> Beleuchtung <br/>
-    </div>
 <br>
 <br>
 
