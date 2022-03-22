@@ -60,7 +60,7 @@
                             }
                         ?>
                         <br>
-                        <button type="submit" class="btn btn-warning w-100">In den Warenkorb<img src="../img/shopping-cart.svg" alt=""></button>
+                        <button type="submit" class="btn btn-warning w-100">In den Warenkorb<img src="../image/shopping-cart.svg" alt=""></button>
                     </form>
                 </div>
             </div>
