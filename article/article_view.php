@@ -48,10 +48,14 @@
         </form>
         
 
-        
-        <?php
-        $value = get_all_article($con);
+      
+<div class="container">
 
+    <?php 
+        echo '<div class="row">';
+
+        $value = get_all_article($con);
+        $counter = 0;
         
         if (isset($_POST['preis'])) {
             $value = order_article_preis($con);
