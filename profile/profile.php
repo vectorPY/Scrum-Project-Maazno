@@ -1,3 +1,5 @@
+<?php include_once "../static/header.php"; ?>
+
 <html>
     <head>
         <title>
@@ -14,8 +16,6 @@ session_start();
 if (empty($_SESSION["nutzer_id"])) {
     header("Location: ../index.php");
 }
-
-include_once "../static/header.php";
 
 echo "<center><h1>Ihr Profil</h1></center><br>";
 
