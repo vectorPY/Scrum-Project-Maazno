@@ -37,7 +37,7 @@ function get_all_article_($con){
  * @param  con: die Datenbankverbindung
  * @return object mysqli_result mit allen Attributen der Antwort
  */
-function get_all_category_($con){
+function get_all_category($con){
     $sql = "SELECT `kategorie_id`, `kategorie` FROM `kategorie` ORDER BY kategorie_id;";
 
     return mysqli_query($con, $sql);
