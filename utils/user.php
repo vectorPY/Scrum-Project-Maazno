@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * prüft. ob ein geg. Nutzer ein Admin ist
+ * prüft ob ein geg. Nutzer ein Admin ist
  * 
  * @param con: die Datenbankverbindung
  * @param id: die Nutzer ID 
