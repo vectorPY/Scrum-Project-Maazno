@@ -5,66 +5,52 @@
 
 ?>
 
-
-<body class="text-center">
-<br>
-    <h1 class="h3 mb-3 fw-normal">Kategorieauswahl</h1>  
-    <form method="post">
-    
-    <div class="form-check form-check-inline">
-    <input type="checkbox" name='alle' value="Alle"> Alle <br/>
-    </div>
-
-    <div class="form-check form-check-inline">
-    <input type="checkbox" name='küchenutensilien' value="Küchenutensilien"> Küchenutensilien <br/>
-    </div>
-
-    <div class="form-check form-check-inline">
-    <input type="checkbox" name='spiel' value="Spiel"> Spiel <br/>
-    </div>
-<br>
-<br>
-
-
-    <h1 class="h3 mb-3 fw-normal">Bitte wählen sie  eine Option aus! </h1>
-        <form method="post">
-            <input type="checkbox" name='preis' value="Preis"> Preis absteigend <br/>
-            <input type="checkbox" name='preis2' value="Preis"> Preis aufsteigend <br/>
-            <input type="checkbox" name='name' value="Name"> Name aufsteigend <br/>
-            <input type="checkbox" name='name2' value="Name"> Name absteigend <br/>
-                <br>
-                <br>
-            <input type="submit" value="Submit" name="submit">
-                <br>
-                <br>
-        </form>
-        
-
-
 <div class="container">
+    <!-- Form welches nach den parametern zum sortieren fragt und zur gleichen Seite zurueck leitet -->
+    <form action="/Scrum-Project-Maazno/article/article_view.php" method="post"> 
+        <div class="row"> 
+            <div class="col-sm-5"></div>
+            <div class="col-sm-3">
+                Kategorie: <select class="form-select-sm" aria-label="kategorie_id" name="kategorie_id"> <!-- Dropdownmenue fuer die Kategorien -->
+                    <option selected value="alles">Alles</option>
+                    <?php 
+                        $kategorie = get_all_kategorie($con);
+                        // Schleife, die alle Kategorien zum dropdownmenue hinzufuegt
+                        while ($kategorie_row = mysqli_fetch_assoc($kategorie)){
+                            echo '<option value="'. $kategorie_row["kategorie_id"] .'">'. $kategorie_row["kategorie"] .'</option>';
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                Sortieren nach: <select class="form-select-sm" aria-label="sort" name="sort"> <!-- Dropdownmenue nach was sortiert werden soll -->
+                    <option selected value="name_asc">Name &uarr;</option>
+                    <option value="name_desc">Name &darr;</option>
+                    <option value="preis_asc">Preis &uarr;</option>
+                    <option value="preis_desc">Preis &darr;</option>
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-success">Sort</button> <!-- Knopf zum abschicken des Forms -->
+            </div>
+        </div>
+    </form>
 
     <?php 
-        echo '<div class="row">';
-
-        $value = get_all_article($con);
+        // Prüfen ob der Nutzer eine Abfrage betätigt hat
+        if (isset($_POST["kategorie_id"])){
+            $kategorie_id = $_POST["kategorie_id"];
+            $sort = $_POST["sort"];
+        }
+        else{ // wenn nicht wird nach den Standatwerten sortiert
+            $kategorie_id = "alles";
+            $sort = "name_asc";
+        }
+        // Abfrage nach den Artikeln sortiert
+        $value = get_sorted_article($con, $kategorie_id, $sort);
         $counter = 0;
-        
-        if (isset($_POST['preis'])) {
-            $value = order_article_preis($con);
-        } else if (isset($_POST['preis2'])) {
-            $value = order_article_preis_asc($con);
-        } else if (isset($_POST['name'])) {
-            $value = order_article_name($con);
-        } else if (isset($_POST['name2'])) {
-            $value = order_article_name_desc($con);
-        } else if (isset($_POST['alle'])) {
-            $value = get_all_article($con);
-        } else if (isset($_POST['küchenutensilien'])) {
-            $value = get_all_article_kuechenutensilien($con);
-        } else if (isset($_POST['spiel'])) {
-            $value = get_all_article_spiel($con);
-        } 
 
+        echo '<div class="row">';  
         // Schleife, zur hinzufuegung der Artikel in den view
         while($row_article = mysqli_fetch_assoc($value)){
             // counter zaehlt, wie viele Elemente sich schon in der Reihe befinden und geht in die neue Reihe, wenn es vier Elemente in der Reihe gibt
@@ -85,18 +71,9 @@
             $counter++;
         }
         echo '</div>';
-
     ?>
 
 
 <?php
     include_once("../static/footer.php");
 ?>
-
-
-
-
-
-
-
-
