@@ -11,8 +11,13 @@
     
     <?php
         include_once "../static/header.php";
-        // TODO: Überprüfen, ob ein Admin eingeloggt ist
 
+        session_start();
+
+        // nur Admins können Kategorien hinzufügen
+        if (!(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1)) {
+            header('Location: ../index.php');
+        }
     ?>
 
     <center><h1>Fügen Sie hier eine Kategorie hinzu:</h1></center>
