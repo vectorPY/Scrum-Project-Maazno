@@ -38,15 +38,30 @@
 							<a class="nav-link" href="#">K&auml;ufe</a>
 						</li>
 						<?php
+
+						// admin privilegien überprüfen
+						if (isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) {
+							echo '
+								<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+										<a class="dropdown-item" href="/Scrum-Project-Maazno/article/create_article_form.php">Artikel erstellen</a>
+										<a class="dropdown-item" href="/Scrum-Project-Maazno/category/create_category_form.php">Kategorie erstellen</a>
+									</div>
+								</li>
+							';
+						}
+
 						// Fallunterscheidung für wenn der Nutzer eingeloggt ist und wenn nicht.
 						if (isset($_SESSION["username"])){ //Eingeloggt
-							echo'<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/profile/profile.php">Profil</a></li>';
-							echo'<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/auth/logout.php">Logout</a></li>';
+							echo '<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/profile/profile.php">Profil</a></li>';
+							echo '<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/auth/logout.php">Logout</a></li>';
 						}
 						else{ //nicht Eingeloggt
-							echo'<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/auth/register_form.php">Register</a></li>';
-							echo'<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/auth/login_form.php">Login</a></li>'; 
+							echo '<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/auth/register_form.php">Register</a></li>';
+							echo '<li class="nav-item"><a class="nav-link" href="/Scrum-Project-Maazno/auth/login_form.php">Login</a></li>'; 
 						}
+
 						?>
 					</ul>
 				</div>
