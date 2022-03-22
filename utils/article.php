@@ -20,13 +20,25 @@ function valid_category_id($con, $c_id) {
 }
 
 /**
- * gibt alle Attribute von artikel zurück, welche die Kategorie Beleuchtung haben
+ * gibt alle Attribute von artikel zurück
  *
  * @param  con: die Datenbankverbindung
  * @return object mysqli_result mit allen Attributen der Antwort
  */
 function get_all_article_($con){
     $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE `kategorie_id` = 4 ORDER BY artikel_id;";
+
+    return mysqli_query($con, $sql);
+}
+
+/**
+ * gibt alle Attribute von category zurück
+ *
+ * @param  con: die Datenbankverbindung
+ * @return object mysqli_result mit allen Attributen der Antwort
+ */
+function get_all_category_($con){
+    $sql = "SELECT `kategorie_id`, `kategorie` FROM `kategorie` ORDER BY kategorie_id;";
 
     return mysqli_query($con, $sql);
 }

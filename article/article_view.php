@@ -51,11 +51,26 @@
 
 <div class="container">
 
-    <?php 
+    <?php
+        $counter = 0;  
+        $category = get_all_category_($con);
+
+        while($row_category = mysqli_fetch_row($category)){
+            // counter zaehlt, wie viele Elemente sich schon in der Reihe befinden und geht in die neue Reihe, wenn es vier Elemente in der Reihe gibt
+            if ($counter % 6 == 0 and $counter != 0){
+                echo '</div>';
+                echo '<br>';
+                echo '<div class="row">';
+            }
+        }
+        
+
+        echo '</div>';
+
         echo '<div class="row">';
 
         $value = get_all_article($con);
-        $counter = 0;
+
         
         if (isset($_POST['preis'])) {
             $value = order_article_preis($con);
@@ -104,11 +119,3 @@
 <?php
     include_once("../static/footer.php");
 ?>
-
-
-
-
-
-
-
-
