@@ -11,7 +11,6 @@
     
     <?php
         include_once "../static/header.php";
-        // TODO: Überprüfen, ob ein Admin eingeloggt ist
 
         session_start();
 
