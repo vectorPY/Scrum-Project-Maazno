@@ -19,17 +19,6 @@ function valid_category_id($con, $c_id) {
         return false;
 }
 
-/**
- * gibt alle Attribute von artikel zurück
- *
- * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen der Antwort
- */
-function get_all_article_($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE `kategorie_id` = 4 ORDER BY artikel_id;";
-
-    return mysqli_query($con, $sql);
-}
 
 /**
  * gibt alle Attribute von category zurück
@@ -51,7 +40,7 @@ function get_all_category($con){
  * @return object mysqli_result mit dem Artikel mit gefragter Artikelnummer
  */
 function get_one_article($con, $artikel_id){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE artikel_id=$artikel_id;";
+    $sql = "SELECT * FROM `artikel` WHERE artikel_id=$artikel_id;";
 
     return mysqli_query($con, $sql);
 }
@@ -69,111 +58,56 @@ function search_article($con, $search) {
     return mysqli_query($con, $sql);
 }
 
+
 /**
- * gibt alle Attribute von artikel zurück
+ * Gibt alle Artikel aus, nach welchen gefiltert wurde
  *
  * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen der Antwort.
+ * @param  string $kategorie_id: String mit der Kategorie_id oder mit "alles"
+ * @param  string $sort: String der bestimmt nach was sortiert wird
+ * @return mysqli_result mit den passenden Artikeln
  */
-function get_all_article($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` ORDER BY artikel_id;";
+function get_sorted_article($con, $kategorie_id, $sort){
+    if ($kategorie_id == "alles"){
+        if ($sort == "preis_asc"){
+            $sql = 'SELECT * FROM `artikel` ORDER BY `preis` ASC;';
+        }
+        elseif ($sort == "preis_desc"){
+            $sql = 'SELECT * FROM `artikel` ORDER BY `preis` DESC;';
+        }
+        elseif ($sort == "name_asc"){
+            $sql = 'SELECT * FROM `artikel` ORDER BY `name` ASC;';
+        }
+        elseif ($sort == "name_desc"){
+            $sql = 'SELECT * FROM `artikel` ORDER BY `name` DESC;';
+        }
+    }
+    else{
+        if ($sort == "preis_asc"){
+            $sql = 'SELECT * FROM `artikel` WHERE `kategorie_id`='. $kategorie_id .' ORDER BY `preis` ASC;';
+        }
+        elseif ($sort == "preis_desc"){
+            $sql = 'SELECT * FROM `artikel` WHERE `kategorie_id`='. $kategorie_id .' ORDER BY `preis` DESC;';
+        }
+        elseif ($sort == "name_asc"){
+            $sql = 'SELECT * FROM `artikel` WHERE `kategorie_id`='. $kategorie_id .' ORDER BY `name` ASC;';
+        }
+        elseif ($sort == "name_desc"){
+            $sql = 'SELECT * FROM `artikel` WHERE `kategorie_id`='. $kategorie_id .' ORDER BY `name` DESC;';
+        }
+    }
 
     return mysqli_query($con, $sql);
 }
 
 /**
- * gibt alle Attribute von artikel zurück, welche die Kategorie Küchenutensilien haben
  *
- * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen der Antwort.
+ * @param con: die Datenbankverbindung
+ *
+ * @return object mysqli_result mit den passenden Kategorien
  */
-function get_all_article_kuechenutensilien($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE `kategorie_id` = 2 ORDER BY artikel_id;";
+function get_all_kategorie($con){
+    $sql = "SELECT * FROM `kategorie`";
 
     return mysqli_query($con, $sql);
 }
-
-/**
- * gibt alle Attribute von artikel zurück, welche die Kategorie Spiel haben
- *
- * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen der Antwort.
- */
-function get_all_article_spiel($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE `kategorie_id` = 1 ORDER BY artikel_id;";
-
-    return mysqli_query($con, $sql);
-}
-
-/**
- * gibt alle Attribute von artikel zurück, welche die Kategorie Buch haben
- *
- * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen der Antwort.
- */
-function get_all_article_buch($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE `kategorie_id` = 3 ORDER BY artikel_id;";
-
-    return mysqli_query($con, $sql);
-}
-
-/**
- * gibt alle Attribute von artikel zurück, welche die Kategorie Drogerie haben
- *
- * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen der Antwort.
- */
-function get_all_article_drogerie($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` WHERE `kategorie_id` = 6 ORDER BY artikel_id;";
-
-    return mysqli_query($con, $sql);
-}
-
-/**
- * gibt alle Attribute von artikel nach Preis absteigend sortiert zurück
- *
- * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen nach Preis absteigend sortiert.
- */
-function order_article_preis($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` ORDER BY preis desc;";
-
-    return mysqli_query($con, $sql);
-}
-
-/**
- * gibt alle Attribute von artikel nach Preis aufsteigend zurück
- *
- * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen nach Preis aufsteigend sortiert.
- */
-function order_article_preis_asc($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` ORDER BY preis asc;";
-
-    return mysqli_query($con, $sql);
-}
-
-/**
- * gibt alle Attribute von artikel nach Name sortiert zurück
- *
- * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen nach Name sortiert.
- */
-function order_article_name($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` ORDER BY name;";
-
-    return mysqli_query($con, $sql);
-}
-
-/**
- * gibt alle Attribute von artikel nach Name absteigend sortiert zurück
- *
- * @param  con: die Datenbankverbindung
- * @return object mysqli_result mit allen Attributen nach Name absteigend sortiert.
- */
-function order_article_name_desc($con){
-    $sql = "SELECT `artikel_id`, `name`, `preis`, `bild`, `beschreibung`, `kategorie_id` FROM `artikel` ORDER BY name desc;";
-
-    return mysqli_query($con, $sql);
-}
-?>
