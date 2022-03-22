@@ -50,6 +50,7 @@
         $value = get_sorted_article($con, $kategorie_id, $sort);
         $counter = 0;
 
+
         echo '<div class="row">';  
         // Schleife, zur hinzufuegung der Artikel in den view
         while($row_article = mysqli_fetch_assoc($value)){

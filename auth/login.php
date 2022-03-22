@@ -3,6 +3,7 @@
 session_start();
 
 include("../inc.php");
+include "../utils/user.php";
 
 $username = $_POST['username'];
 $passwort = $_POST['passwort'];
@@ -28,6 +29,13 @@ if(!empty($username) && !empty($passwort) && !empty($hash_passwort) && !is_numer
 				$_SESSION['username'] = $username['username'];
 
 				$_SESSION['nutzer_id'] = $username['nutzer_id'];
+
+				// prüfen, ob der Nutzeraccount Admin - Rechte hat
+				if (is_admin($con, $_SESSION["nutzer_id"])) {
+					$_SESSION["admin"] = 1;
+				} else {
+					$_SESSION["admin"] = 0;
+				}
 
 				header("Location: ../index.php");
 				die;

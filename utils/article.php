@@ -21,6 +21,18 @@ function valid_category_id($con, $c_id) {
 
 
 /**
+ * gibt alle Attribute von category zurück
+ *
+ * @param  con: die Datenbankverbindung
+ * @return object mysqli_result mit allen Attributen der Antwort
+ */
+function get_all_category($con){
+    $sql = "SELECT `kategorie_id`, `kategorie` FROM `kategorie` ORDER BY kategorie_id;";
+
+    return mysqli_query($con, $sql);
+}
+
+/**
  * gibt die Attribute eines Artikels zurueck
  *
  * @param  con: die Datenbankverbindung
@@ -89,7 +101,6 @@ function get_sorted_article($con, $kategorie_id, $sort){
 }
 
 /**
- * Gibt alle Kategorien aus
  *
  * @param con: die Datenbankverbindung
  *

@@ -100,7 +100,8 @@ CREATE TABLE `nutzer` (
   `hausnummer` int(11) NOT NULL,
   `passwort` varchar(128) NOT NULL,
   `ort_id` int(11) NOT NULL,
-  `email` varchar(32) NOT NULL
+  `email` varchar(32) NOT NULL,
+  `ist_admin` boolean NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

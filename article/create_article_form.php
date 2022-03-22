@@ -13,6 +13,12 @@
         include_once "../static/header.php";
         // TODO: Überprüfen, ob ein Admin eingeloggt ist
 
+        session_start();
+
+        // nur Admins können Artikel hinzufügen
+        if (!(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1)) {
+            header('Location: ../index.php');
+        }
     ?>
 
     <center><h1>Fügen Sie hier einen Artikel hinzu:</h1></center>

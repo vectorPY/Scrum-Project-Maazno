@@ -17,7 +17,7 @@
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="/Scrum-Project-Maazno/index.php">
-					<img src="" alt="Logo" width="80" height="24" class="d-inline-block align-text-top">
+					<img src="/Scrum-Project-Maazno/image/maazno_logo_invis.png" alt="Logo" width="65" height="35" class="d-inline-block align-text-top">
 					Maazno
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

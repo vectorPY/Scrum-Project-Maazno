@@ -27,6 +27,13 @@
 
     <?php 
         include_once "../static/header.php";
+
+        session_start();
+
+        // redirect zu homepage, wenn ein Nutzer eingeloggt ist
+        if (isset($_SESSION["nutzer_id"])) {
+            header('Location: ../index.php');
+        }
     ?>
   </head>
 
