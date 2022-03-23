@@ -10,8 +10,6 @@
 
 <?php
 
-session_start();
-
 // redirect zur index Seite, wenn nicht eingeloggt
 if (empty($_SESSION["nutzer_id"])) {
     header("Location: ../index.php");
