@@ -1,37 +1,40 @@
 <?php
-$artikel_id = $_GET["artikel_id"];     //artikel_id aus der URL
-$action = $_GET["action"]; //action aus der URL
+session_start();
 
-switch($action) {   //entscheiden
-case "add":
-$_SESSION["warenkorb"][$artikel_id]++; //hinzufuegen der Menge des Produktes $artikel_id
-break;
-case "remove":
-$_SESSION["warenkorb"][$artikel_id]--; //entfernen der Menge des Produktes $artikel_id
-if($_SESSION["warenkorb"][$artikel_id] == 0) unset($_SESSION["warenkorb"][$artikel_id]); //Falls die Menge Null ist, wird sie vollständig entfernt
-case "empty":
-unset($_SESSION["warenkorb"]); //den Warenkorb leeren
-break;
-}
+include("../inc.php");
 
-if($_SESSION["warenkorb"]) {
-foreach($_SESSION["warenkorb"] as $artikel_id => $anzahl) {
-$result = mysql_query("SELECT * FROM product WHERE id = "$artikel_id"");
-if(isset($result)) {
-while($row = mysql_fetch_assoc($result)) {
-$artikel.preis = $row["artikel.preis"]
-$line_cost = $artikel.preis * $anzahl;
-$total = $total + $line_cost;
-?>
-<tr>
-<td><?php echo $row ["artikel.name"]; ?></td>
-<td><?php echo $row ["artikel.preis"]; ?></td>
-<td><?php echo $row ["anzahl"]; ?></td>
-<td><?php echo "<a href="$_SERVER[PHP_SELF]$action=remove&artikel_id={$result["artikel_id"]}" class="btn btn-warning btn-fill btn-sm pull-right">Remove</a>"; ?></td>
-<td><?php echo $line_cost; ?></td>
-</tr>
-<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $con = mysqli_connect($host,$user,$passwd,$datenbank);
+    $id = $_POST['id'];
+    $qty = $_POST['qty'];
+    $userId = $_POST['user_id'];
+    if ($userId > 0){
+        $sql = "INSERT INTO  cart(product_id,user_id,qty) VALUES('$id','$userId','$qty')";
+        $result = mysqli_query($con, $sql);
+        $html = '';
+        if ($result){
+            $newSql = "SELECT artikel.bild as bild,artikel.name as name,cart.qty as qty,artikel.preis as preis  FROM cart INNER  JOIN artikel ON cart.product_id = artikel.artikel_id WHERE cart.user_id = '$userId' ORDER  BY  cart.created_at DESC";
+            $rs = mysqli_query($con, $newSql);
+            if (mysqli_num_rows($rs) > 0){
+                while($row = mysqli_fetch_assoc($rs)){
+                    $html .='<li>
+                            <div class="media">
+                                <img style="max-width: 60px;float: left" class="align-self-center mr-3" src="data:image/jpg/png/;charset=utf8;base64,'.base64_encode($row['bild']).'" alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <h5 class="mt-0">'.$row['name'].'</h5>
+                                    <span class="d-block">Quantity: '.$row['qty'].'</span>
+                                    <span class="d-block">Price: '.((int) $row['qty'] * (int)$row['preis']).'</span>
+                                </div>
+                            </div>
+                        </li><hr>';
+                }
+                $html .='<li><a href="checkout/checkout.php">See All Product</a></li>';
+                echo json_encode([
+                   'status'=>true,
+                   'data'=> $html
+                ]);
+                die();
+            }
+        }
+    }
 }
-}
-}
-} else {
