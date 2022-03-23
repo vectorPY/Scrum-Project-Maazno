@@ -2,13 +2,14 @@
 <?php
 	session_start();
 ?>
-
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!doctype html>
 <html lang="de">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<script src="https://use.fontawesome.com/67ed5102d2.js"></script>
 		<title>Maazno</title>
 	</head>
 
@@ -65,12 +66,76 @@
 						?>
 					</ul>
 				</div>
-				<div class="container-fluid">
-					<form class="d-flex justify-content-end" action="http://localhost/Scrum-Project-Maazno/search/search.php" method="post">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
-							<button class="btn btn-outline-light" type="submit">Search</button>
-					</form>
-				</div>
-			</div>
-		</nav>
-		<br><br><br>
+				 <div class="container-fluid">
+            <form class="d-flex justify-content-end">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                            <ul id="cart-item" style="width: 400px" class="dropdown-menu dropdown-menu-end"
+                                aria-labelledby="navbarDropdownMenuLink">
+
+                                <?php
+                                $newSql = "SELECT artikel.bild as bild,artikel.name as name,cart.qty as qty,artikel.preis as preis  FROM cart INNER  JOIN artikel ON cart.product_id = artikel.artikel_id WHERE cart.user_id = '$userId' ORDER  BY  cart.created_at DESC";
+                                $rs = mysqli_query($con, $newSql);
+                                if (mysqli_num_rows($rs) > 0):
+                                    while ($row = mysqli_fetch_assoc($rs)):
+                                        ?>
+                                        <li>
+                                            <div class="media">
+                                                <img style="max-width: 60px;float: left" class="align-self-center mr-3"
+                                                     src="data:image/jpg/png/;charset=utf8;base64,<?=base64_encode($row['bild'])?>"
+                                                     alt="Generic placeholder image">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0"><?= $row['name'] ?></h5>
+                                                    <span class="d-block">Quantity: <?=$row['qty']?></span>
+                                                    <span class="d-block">Price: <?=((int) $row['qty'] * (int)$row['preis'])?></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <hr>
+                                    <?php endwhile; ?>
+                                    <li><a href="<?=$baseUrl.'checkout/checkout.php'?>">Checkout</a></li>
+                                    <?php else: ?>
+                                    <li>Your cart is empty</li>
+                                    <?php endif; ?>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</nav>
+<br><br><br><br>
+<style>
+    #cart-item {
+        padding: 20px;
+    }
+
+    #cart-item .media {
+        display: flex;
+        justify-content: start;
+    }
+
+    #cart-item .media-body {
+        float: left;
+        overflow: hidden;
+        margin-left: 20px;
+    }
+
+    #cart-item .media-body h5 {
+        margin: 0;
+        padding: 0;
+    }
+</style>
