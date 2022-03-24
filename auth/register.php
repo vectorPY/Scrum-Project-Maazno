@@ -27,8 +27,8 @@ $hash_passwort = hash("sha512", $passwort);
 
 $con = mysqli_connect($host, $user, $passwd, $datenbank) or die("Die Datenbank ist momentan nicht erreichbar!");
 
-$sql = "INSERT INTO nutzer (username, vorname, name, telefon, ort_id, straße, hausnummer, email, passwort) 
-  VALUES ('$username', '$vorname', '$name', '$telefon', $ort_id, '$straße', $hausnummer, '$email', '$hash_passwort')";
+$sql = "INSERT INTO nutzer (username, vorname, name, telefon, ort_id, straße, hausnummer, email, passwort, ist_admin) 
+  VALUES ('$username', '$vorname', '$name', '$telefon', $ort_id, '$straße', $hausnummer, '$email', '$hash_passwort', false)";
 
 $unique = "SELECT username FROM nutzer WHERE username='$username'";
 
@@ -53,7 +53,7 @@ else {
 			if (mysqli_query($con, $sql))
 				echo "Nutzer wurde ertsellt";
 			else {
-				echo "Beim Erstellen des Nutzers ist ein Fehler aufgetreten!";
+				echo "Beim Erstellen des Nutzers ist ein Fehler aufgetreten! ";
 				echo mysqli_error($con);
 			}
 		}
