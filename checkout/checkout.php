@@ -6,7 +6,7 @@ $userId = 0;
 if (@$_SESSION['nutzer_id']) {
     $userId = $_SESSION['nutzer_id'];
 }
-$newSql = "SELECT artikel.bild as bild,artikel.name as name,im_warenkorb.anzahl as anzahl,artikel.preis as preis  FROM im_warenkorb INNER  JOIN artikel ON im_warenkorb.artikel_id = artikel.artikel_id WHERE im_warenkorb.nutzer_id = '$userId' ORDER  BY  im_warenkorb.created_at DESC";
+$newSql = "SELECT artikel.bild as bild,artikel.name as name,cart.qty as qty,artikel.preis as preis  FROM cart INNER  JOIN artikel ON cart.product_id = artikel.artikel_id WHERE cart.user_id = '$userId' ORDER  BY  cart.created_at DESC";
 $total = 0;
 ?>
 <div class="container">
@@ -35,9 +35,9 @@ $total = 0;
                         <td><?=$count?></td>
                         <td><img style="max-width: 50px" src="data:image/jpg/png/;charset=utf8;base64,<?=base64_encode($row['bild'])?>" alt=""></td>
                         <td><?=$row['name']?></td>
-                        <td><?=$row['anzahl']?></td>
-                        <td><?=($row['anzahl'] * ($row['preis']))?>€</td>
-                        <?php $total = $total + ($row['anzahl'] * ($row['preis'])) ?>
+                        <td><?=$row['qty']?></td>
+                        <td><?=($row['qty'] * ($row['preis']))?>€</td>
+                        <?php $total = $total + ($row['qty'] * ($row['preis'])) ?>
                     </tr>
                             <?php
                                 $count++;
@@ -51,6 +51,7 @@ $total = 0;
                 </tbody>
             </table>
             <?php if ($total > 0): ?>
+<!--                <a href="checkout-success.php" class="btn btn-success">Checkout</a>-->
             <?php endif; ?>
         </div>
     </div>
