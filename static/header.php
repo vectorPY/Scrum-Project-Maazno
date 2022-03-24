@@ -1,4 +1,5 @@
-<?p<?php
+<!-- HTML/PHP code, für die Navigationbar -->
+<?php
 	session_start();
 ?>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -32,7 +33,7 @@
 							<a class="nav-link" href="/Scrum-Project-Maazno/article/article_view.php">Artikel&uuml;bersicht</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/Scrum-Project-Maazno/im_warenkorb/im_warenkorb.php">Warenkorb</a>
+							<a class="nav-link" href="/Scrum-Project-Maazno/cart/cart.php">Warenkorb</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">K&auml;ufe</a>
@@ -78,13 +79,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-shopping-im_warenkorb"></i>
+                                <i class="fa fa-shopping-cart"></i>
                             </a>
-                            <ul id="im_warenkorb-item" style="width: 400px" class="dropdown-menu dropdown-menu-end"
+                            <ul id="cart-item" style="width: 400px" class="dropdown-menu dropdown-menu-end"
                                 aria-labelledby="navbarDropdownMenuLink">
 
                                 <?php
-                                $newSql = "SELECT artikel.bild as bild,artikel.name as name,im_warenkorb.anzahl as anzahl,artikel.preis as preis  FROM im_warenkorb INNER  JOIN artikel ON im_warenkorb.artikel_id = artikel.artikel_id WHERE im_warenkorb.nutzer_id = '$userId' ORDER  BY  im_warenkorb.erstellt_am DESC";
+                                $newSql = "SELECT artikel.bild as bild,artikel.name as name,cart.qty as qty,artikel.preis as preis  FROM cart INNER  JOIN artikel ON cart.product_id = artikel.artikel_id WHERE cart.user_id = '$userId' ORDER  BY  cart.created_at DESC";
                                 $rs = mysqli_query($con, $newSql);
                                 if (mysqli_num_rows($rs) > 0):
                                     while ($row = mysqli_fetch_assoc($rs)):
@@ -96,8 +97,8 @@
                                                      alt="Generic placeholder image">
                                                 <div class="media-body">
                                                     <h5 class="mt-0"><?= $row['name'] ?></h5>
-                                                    <span class="d-block">Menge: <?=$row['anzahl']?></span>
-                                                    <span class="d-block">Preis: <?=((int) $row['anzahl'] * (int)$row['preis'])?></span>
+                                                    <span class="d-block">Quantity: <?=$row['qty']?></span>
+                                                    <span class="d-block">Price: <?=((int) $row['qty'] * (int)$row['preis'])?></span>
                                                 </div>
                                             </div>
                                         </li>
@@ -105,7 +106,7 @@
                                     <?php endwhile; ?>
                                     <li><a href="<?=$baseUrl.'checkout/checkout.php'?>">Checkout</a></li>
                                     <?php else: ?>
-                                    <li>Dein Warenkorb ist leer</li>
+                                    <li>Your cart is empty</li>
                                     <?php endif; ?>
 
                             </ul>
@@ -118,22 +119,22 @@
 </nav>
 <br><br><br><br>
 <style>
-    #im_warenkorb-item {
+    #cart-item {
         padding: 20px;
     }
 
-    #im_warenkorb-item .media {
+    #cart-item .media {
         display: flex;
         justify-content: start;
     }
 
-    #im_warenkorb-item .media-body {
+    #cart-item .media-body {
         float: left;
         overflow: hidden;
         margin-left: 20px;
     }
 
-    #im_warenkorb-item .media-body h5 {
+    #cart-item .media-body h5 {
         margin: 0;
         padding: 0;
     }
