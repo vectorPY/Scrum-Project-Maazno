@@ -97,15 +97,15 @@
         $(document).on('click','.cart',function (e){
             e.preventDefault();
             var id = $(this).data('id');
-            var anzahl = $(this).parent('div').parent('div').children('div.input-group').find('input.quantity-field').val();
-            var nutzer_id = '<?=@$_SESSION['nutzer_id'] ? : 0?>';
+            var qty = $(this).parent('div').parent('div').children('div.input-group').find('input.quantity-field').val();
+            var user_id = '<?=@$_SESSION['nutzer_id'] ? : 0?>';
             $.ajax({
                 url:'/sc/cart/cart.php',
                 method:'POST',
                 data:{
                     id:id,
-                    anzahl:anzahl,
-                    nutzer_id:nutzer_id
+                    qty:qty,
+                    user_id:user_id
                 },
                 success:function (response){
                     response = JSON.parse(response);
